@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>blogit - summary</title>
+    <link rel="stylesheet" href="/css/master.css">
+    <link rel="stylesheet" href="/css/gimli.css">
+    <link rel="alternate" type="application/atom+xml" title="Commit feed" href="/git/blogit/atom/refs/heads/syg/master" />
+    <link rel="alternate" type="application/atom+xml" title="Tag feed" href="/git/blogit/atom/tags" />
+</head>
+
+<body>
+    <header><a href="/git">pedantic.software</a> repositories</header>
+    <main>
+        <nav>
+            <table>
+                <tr>
+                    <td><strong><a href="/git/blogit/summary/refs/heads/syg/master">summary</a></strong>
+                        <td><a href="/git/blogit/log/refs/heads/syg/master">log</a>
+                            <td><a href="/git/blogit/commit/refs/heads/syg/master">commit</a>
+                                <td><a href="/git/blogit/tree/refs/heads/syg/master">tree</a></tr>
+            </table>
+        </nav>
+        <h1>blogit - mini git-based static blog generator</h1>
+        <h2>References</h2>
+        <table class="ref-list">
+            <tr>
+                <th>Branch
+                    <th>Commit
+                        <th>Author
+                            <th>Date</tr>
+            <tr>
+                <td><a href="/git/blogit/summary/refs/heads/master">master</a>
+                    <td><a href="/git/blogit/commit/27d3f06259e83df2fed6fec7bbe77ac6b917eee7">man page: use indented paragraphs for lists</a>
+                        <td>François-Xavier Carton
+                            <td>2021-10-22 17:14</tr>
+            <tr>
+                <td><a href="/git/blogit/summary/refs/heads/syg/master"><strong>syg/master</strong></a>
+                    <td><a href="/git/blogit/commit/d12a1cffc5a5432fa6b15ad3591a9982baf27dde">use external markdown to html converter</a>
+                        <td>Sylvain Gauthier
+                            <td>2021-01-17 01:45</tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        <h1>blogit - a small static blog generator
+        </h1>
+        <h2>Synopsis</h2>
+        <p><b>blogit</b> [<b>init</b>|<b>build</b>|<b>deploy</b>|<b>clean</b>]</p>
+        <h2>Description</h2>
+        <p><b>blogit</b> is a small static blog generator, using a markdown-like syntax and git capabilities. For example, first posted and last edited dates are extracted from git history.
+        </p>
+        <h2>Getting started</h2>
+        <p>Run &quot;blogit init&quot; and follow the interactive configuration. This will create the basic structure and initialize a git repository.
+        </p>
+        <h2>Structure</h2>
+        <p>Articles are created in the
+            <b>articles</b> directory, using a markdown-like syntax (see
+            <b>SYNTAX</b>). HTML templates (configurable chunks of HTML code that will be used for static page generation) are stored in the
+            <b>templates</b> directory, and can be edited (see
+            <b>TEMPLATES</b>). Additional data can be stored in the
+            <b>data</b> directory and will be copied at the root of the website.
+        </p>
+        <h2>Workflow</h2>
+        <p>The articles, templates and data can be created and edited offline. To create a local version of the blog, run &quot;blogit build&quot;. It will be available in the
+            <b>blog</b> directory, and the main page is index.html. Note that only articles known to git will be created (this is to prevent unfinished articles to be published). When its ready for publication, commit the changes to the git repository, and build the blog using &quot;blogit build&quot;. Then run &quot;blogit deploy&quot; to publish the site with
+            <b>rsync</b>(1) to the remote configured at the beginning.
+        </p>
+        <h2>Syntax</h2>
+        <p>The first line of the article text file is its title. The next line can be blank, and will be skipped if that case. Then the remaining of the file is in a markdown format, with the following formatting options:
+        </p>
+        <dl><dt><b>Sections</b></dt>
+            <dd>Sections and subsections are defined by lines starting with one or several '
+                <b>#</b>', each indicating a new section level.
+            </dd>
+        </dl>
+        <dl><dt><b>Paragraphs</b></dt>
+            <dd>Paragraphs are started with a blank line.
+            </dd>
+        </dl>
+        <dl><dt><b>Bold, italics</b></dt>
+            <dd>Chunks enclosed in stars '
+                <b>*</b>' are formatted in bold. Chunks enclosed with two stars '
+                <b>**</b>' are formatted in bold.
+            </dd>
+        </dl>
+        <dl><dt><b>Images</b></dt>
+            <dd>Images are inserted using the following syntax: &quot;![alternate text](url)&quot;.
+            </dd>
+        </dl>
+        <dl><dt><b>Links</b></dt>
+            <dd>Links are inserted using the following syntax: &quot;[link text](url)&quot;.
+            </dd>
+        </dl>
+        <dl><dt><b>Comments</b></dt>
+            <dd>Lines starting with a semi-colon are comments and are ignored. It can be used to store metadata. In particular, comments beginning with &quot;tags:&quot; indicate tags and are available in the templates in the TAGS variable.
+            </dd>
+        </dl>
+        <dl><dt><b>Code blocks</b></dt>
+            <dd>Code blocks start and end with ``` (this marker must be on its own line). The content is not formatted, and will appear as writter in the source file.
+            </dd>
+        </dl>
+        <dl><dt><b></b></dt>
+            <dd>Unordered lists Each item starts with &quot;- &quot;.
+            </dd>
+        </dl>
+        <dl><dt><b></b></dt>
+            <dd>Ordered lists Each item starts with &quot;1. &quot;, &quot;2. &quot; and so on. The numbers are not checked, so any number can actually be used.
+            </dd>
+        </dl>
+        <h2>Templates</h2>
+        <p>Templates are small HTML code chunks that are used to build the blog pages. Any variable reference (
+            <b>$VARNAME</b>) is replaced with the corresponding environment variable value.
+        </p>
+        <h3>Index page</h3>
+        <p>The index page is built using the following templates:
+        </p>
+        <p>- header.html;
+        </p>
+        <p>- index_header.html;
+        </p>
+        <p>- tag_list_header.html;
+        </p>
+        <p>- tag_entry.html, for each tag;
+        </p>
+        <p>- tag_separator.html, between each tag;
+        </p>
+        <p>- tag_list_footer.html;
+        </p>
+        <p>- article_list_header.html;
+        </p>
+        <p>- article_entry.html, for each article entry;
+        </p>
+        <p>- article_separator.html, between each article;
+        </p>
+        <p>- article_list_footer.html;
+        </p>
+        <p>- index_footer.html;
+        </p>
+        <p>- footer.html.
+        </p>
+        <p>The TITLE variable will contain &quot;index&quot;. In tag_entry, the following additional variables are available:
+        </p>
+        <p>- URL, containing the (relative) URL of the tag index page;
+        </p>
+        <p>- NAME, the tag name.
+        </p>
+        <p>In article_entry, the following additional variables are available:
+        </p>
+        <p>- URL, containing the (relative) URL of the article;
+        </p>
+        <p>- DATE, the first publication date;
+        </p>
+        <p>- TITLE, the title of the article.
+        </p>
+        <h3>Article pages</h3>
+        <p>Article pages are built from the following templates:
+        </p>
+        <p>- header.html
+        </p>
+        <p>- index_header.html
+        </p>
+        <p>- (then the article file is formatted and inserted)
+        </p>
+        <p>- index_footer.html
+        </p>
+        <p>- footer.html
+        </p>
+        <p>At all stages, the following variables are defined:
+        </p>
+        <p>- TITLE, the title of the article;
+        </p>
+        <p>- DATE_POSTED, the first publication date;
+        </p>
+        <p>- DATE_EDITED, the last edit (commit) date;
+        </p>
+        <p>- TAGS, the tags parsed from &quot;tags:&quot; comments.
+        </p>
+    </main>
+</body>
+
+</html>

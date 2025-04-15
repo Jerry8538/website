@@ -1,0 +1,26 @@
+body {
+	background-color: #a0a0a0;
+	color: #353535;
+	padding: 0;
+	margin: 20px;
+}
+
+a { text-decoration: none; color: #573e40 }
+
+header h1 { color: #353535 }
+#page { font-size: 60%; font-style: italic; color: #4f4f4f }
+
+nav { display: flex; justify-content: space-between; margin: 0%; }
+nav ul { list-style-type: none; }
+nav ul li {	display: inline-block; }
+nav ul li a {
+	text-decoration: none;
+}
+article { display: block; max-width: 70%; padding-left: 15%; }
+
+.text-beside-img { display: inline-flex; justify-content: start; align-items: center }
+.text-beside-img img { padding-right: 20px }
+
+article ul { list-style-type: "> " }
+
+table { border-spacing: 20px 0px }
