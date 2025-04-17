@@ -3,7 +3,8 @@
 	<meta charset="utf-8">
 	<title>home</title>
 	<link rel="stylesheet" href="style.css" type="text/css">
-    <script src="iss2.js" defer></script>
+	<script src="iss3.js" defer></script>
+	<script src="iss2.js" defer></script>
 </head>
 
 <body>
@@ -15,7 +16,7 @@
 				<ul>
 					<li><a href="who.html">who</a></li> |
 					<li><a href="why.html">why</a></li> |
-					<b><li><a href="#">what</a></li></b>
+					<li><a href="what.html">what</a></li> |
 				</ul>
 			</div>
 			<div class="right">
@@ -28,11 +29,18 @@
 	</header>
 
 	<article>
-		<h2>sorta cool things about me</h2>
+		<textarea autofocus id="textbox" rows="10" cols="120" placeholder="type something"></textarea>
 		<p>
-		I'm kinda good at programming ig<br>
-		Everything I do is through my own grey matter, not a token predictor (an llm)<br>
-		I use the dvorak keyboard layout, and I'm pretty darn good at it
-		</p>
+		letters: <span id="letters">0</span> |
+		words: <span id="words">0</span> |
+		spaces: <span id="spaces">0</span> |
+		newlines: <span id="newlines">0</span> |
+		symbols: <span id="symbols">0</span>
+		<p>
+		<div id="tokens">
+			<p id="pronouns"></p>
+			<p id="prepositions"></p>
+			<p id="articles"></p>
+		</div>
 	</article>
 </body>

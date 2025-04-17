@@ -24,3 +24,6 @@ article { display: block; max-width: 70%; padding-left: 15%; }
 article ul { list-style-type: "> " }
 
 table { border-spacing: 20px 0px }
+
+#textbox { background: #a0a0a0; border: none }
+#tokens { display: flex; justify-content: space-between }
